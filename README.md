@@ -19,6 +19,7 @@ O JoyCon2 Hub conecta até **8 Joy-Con 2** por Bluetooth, ativa todos os recurso
 - **Bateria em porcentagem** de cada controle.
 - **Calibração guiada**: o sensor de movimento em 6 posições, com um exemplo em 3D de como posicionar, e o analógico. Fica salva por controle (pelo endereço MAC).
 - **Janela de teste** com o Joy-Con em 3D se mexendo junto com o controle real, o analógico, os sensores e os botões acendendo.
+- **Ícone na bandeja** e **configurações na engrenagem**: iniciar com o Windows (inclusive oculto, só na bandeja) e manter rodando ao fechar a janela.
 - **Atualização automática**: ao abrir, o programa avisa quando há uma versão nova e se atualiza sozinho, mantendo as calibrações.
 
 ## Requisitos
