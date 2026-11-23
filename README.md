@@ -13,6 +13,7 @@ O JoyCon2 Hub conecta até **8 Joy-Con 2** por Bluetooth, ativa todos os recurso
 - **Até 8 Joy-Con 2 ao mesmo tempo**, cada um como um jogador separado (esquerdo ou direito, identificado sozinho).
 - **Todos os botões**, incluindo **SL/SR**, HOME, Captura e o botão **C** do Joy-Con 2 direito.
 - **Controle virtual por jogador**: Xbox 360 para os jogadores 1 a 4 e DualShock 4 para os jogadores 5 a 8.
+- **Juntar esquerdo + direito num controle completo**: o botão **Juntar** no cartão de um Joy-Con une ele a um do outro lado (com mais de um disponível, você escolhe qual). Os dois viram **um só controle virtual**, segurados na vertical como um controle comum: dois analógicos, direcional, ABXY, L/R, ZL/ZR, −/+ e HOME (SL/SR não são usados). O movimento vai pela porta DSU do jogador principal, e você escolhe se vem do Joy-Con **esquerdo ou direito**. O cartão unido tem **Testar** (tela própria do controle completo), **Separar** e **Desconectar** (os dois). Ao conectar, os Joy-Con continuam separados como sempre.
 - **Movimento (CemuHook/DSU)**: uma porta por controle (26760, 26761, …), sempre no slot 0.
 - **Vibração** do jogo repassada ao Joy-Con.
 - **LED de jogador** aceso conforme o número do jogador.
