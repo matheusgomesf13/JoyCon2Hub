@@ -23,6 +23,7 @@ O JoyCon2 Hub conecta até **8 Joy-Con 2** por Bluetooth, ativa todos os recurso
 - Each one becomes a **virtual Xbox 360** (players 1–4) or **DualShock 4** (players 5–8) controller.
 - **Join** a left + right pair into one full controller.
 - **Motion via CemuHook/DSU** for Ryujinx, Cemu, Dolphin: one port per player (`127.0.0.1`, port 26760 + player − 1, slot 0).
+- **Switch 2 emulators (Lichii, Eden-NX2):** Lichii only connects the Switch 2 *Pro Controller* by itself. JoyCon2 Hub adds the **Joy-Con 2**. In *Emulation → Configure… → Controls*, pick the virtual Xbox controller as the input device. Then go to *Motion → Configure → CemuhookUDP Config*: `127.0.0.1:26760` is there by default; add 26761, 26762… for more players. Finally click *Motion 1* and move the Joy-Con.
 - Guided calibration, live 3D test window, battery %, player LEDs, tray icon, auto-update.
 - The interface follows your Windows language (English, Português, Español, Français, Deutsch, Italiano, Русский, 日本語, 한국어, 中文).
 
@@ -93,6 +94,19 @@ Para cada jogador, em **Opções → Configurações → Entrada**:
 4. Salve.
 
 O mesmo servidor DSU funciona no **Cemu**, no **Dolphin** e em outros programas compatíveis com CemuHook.
+
+### 3b. Configurar no Lichii (emulador de Switch 2) — e no Eden / Eden-NX2
+O Lichii conecta sozinho só o **Pro Controller** do Switch 2. Os **Joy-Con 2** entram pelo JoyCon2 Hub. Baixe o Lichii somente pela página oficial de releases no GitHub ([zortos293/Lichii](https://github.com/zortos293/Lichii/releases)).
+
+1. Abra **Emulation → Configure… → Controls**.
+2. **Servidores de movimento:** em **Motion**, clique em **Configure** (janela *Configure Motion / Touch*). Em **CemuhookUDP Config**, o servidor `127.0.0.1` porta `26760` (jogador 1) já vem cadastrado. Para outros jogadores, use **Add Server** com `127.0.0.1` e a porta de cada um (`26761`, `26762`, …). O botão **Test** confere a ligação.
+3. Em cada **Player N**:
+   - **Input Device:** o controle Xbox 360 (ou DualShock 4) daquele jogador;
+   - **Controller type:** Pro Controller, Left Joycon, Right Joycon ou Dual Joycons (para o par unido com **Juntar**), conforme o jogo;
+   - **Motion 1:** clique e **mexa o Joy-Con** daquele jogador. O emulador grava o movimento vindo do CemuHook.
+4. Clique em **OK**.
+
+O Eden e o Eden-NX2 têm as mesmas telas (todos vêm do yuzu).
 
 ### 4. Janela "Testar controle"
 Clique em **Testar** no cartão de um controle para ver:
