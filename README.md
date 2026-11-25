@@ -1,98 +1,84 @@
-# JoyCon2 Hub
+# JoyCon2 Hub — Use Joy-Con 2 on PC (Windows)
 
-**Use os Joy-Con 2 (Nintendo Switch 2) no PC e no Ryujinx — botões, analógico, SL/SR, vibração e movimento.**
+🇺🇸 **English** · 🇧🇷 [Português](README.pt-BR.md)
 
-O JoyCon2 Hub conecta até **8 Joy-Con 2** por Bluetooth, ativa todos os recursos deles (inclusive os botões **SL** e **SR**, que normalmente não funcionam no PC) e cria, para cada um, um **controle virtual** que qualquer jogo ou emulador reconhece. O movimento é enviado pelo protocolo **CemuHook (DSU)**, usado pelo Ryujinx, Cemu, Dolphin e outros.
+**Use your Nintendo Switch 2 Joy-Con 2 controllers on a Windows PC and in Ryujinx — every button including SL/SR, sticks, HD rumble and motion (real gyro).**
 
-> ⬇️ **[Baixar a última versão](../../releases/latest)** — arquivo `JoyCon2Hub_Setup_x.y.z.exe`
+JoyCon2 Hub connects up to **8 Joy-Con 2** over Bluetooth, enables all of their features (including the **SL** and **SR** buttons, which normally don't work on PC) and turns each one into a **virtual controller** that any game or emulator recognizes. Motion is sent over the **CemuHook (DSU)** protocol, used by Ryujinx, Cemu, Dolphin and others. No Windows pairing needed — just hold SYNC.
+
+> ⬇️ **[Download the latest version](../../releases/latest)** — file `JoyCon2Hub_Setup_x.y.z.exe`
 
 <p align="center">
-  <img src="docs/main.png" alt="JoyCon2 Hub - controles conectados" width="420">
+  <img src="docs/main.png" alt="JoyCon2 Hub - Joy-Con 2 controllers connected on PC" width="420">
   &nbsp;
-  <img src="docs/joined.png" alt="Esquerdo + direito unidos num controle completo" width="420">
+  <img src="docs/joined.png" alt="Left + right Joy-Con 2 joined into one full controller" width="420">
 </p>
 <p align="center">
-  <img src="docs/test.gif" alt="Janela de teste com o Joy-Con 2 em 3D, analógico, sensores e botões" width="860">
+  <img src="docs/test.gif" alt="Test window with the Joy-Con 2 in 3D, stick, sensors and buttons" width="860">
 </p>
 
-### English
+## Features
 
-**Use Joy-Con 2 (Nintendo Switch 2) controllers on Windows and in Ryujinx — every button including SL/SR, sticks, HD rumble and motion (real gyro).**
-
-- Up to **8 Joy-Con 2** over Bluetooth LE, no Windows pairing needed (just hold SYNC).
-- Each one becomes a **virtual Xbox 360** (players 1–4) or **DualShock 4** (players 5–8) controller.
-- **Join** a left + right pair into one full controller.
-- **Motion via CemuHook/DSU** for Ryujinx, Cemu, Dolphin: one server, one slot per player — `127.0.0.1:26760`, slot = player − 1 (players 1–4 → slots 0–3; players 5–8 → port `26761`, slots 0–3). The card of each controller shows its port and slot.
-- **Switch 2 emulators (Lichii, Eden-NX2):** Lichii only connects the Switch 2 *Pro Controller* by itself. JoyCon2 Hub adds the **Joy-Con 2**. In *Emulation → Configure… → Controls*, pick the virtual Xbox controller as the input device. Then go to *Motion → Configure → CemuhookUDP Config*: `127.0.0.1:26760` is there by default and serves players 1–4 (add `26761` only for players 5–8). Finally click the motion field (*Motion 2* for Right Joycon, *Motion 1* for Left/Pro) and shake the Joy-Con without touching the mouse. If it says "Mouse", right-click → Clear and retry.
-- Guided calibration, live 3D test window, battery %, player LEDs, tray icon, auto-update.
+- **Up to 8 Joy-Con 2 at the same time**, each one as a separate player (left or right, detected automatically).
+- **Every button**, including **SL/SR**, HOME, Capture and the **C** button of the right Joy-Con 2.
+- **One virtual controller per player**: Xbox 360 for players 1–4 and DualShock 4 for players 5–8.
+- **Join left + right into one full controller**: the **Join** button on a Joy-Con's card pairs it with one from the other side (if more than one is available, you pick which). Both become **a single virtual controller**, held upright like a regular gamepad: two sticks, d-pad, ABXY, L/R, ZL/ZR, −/+ and HOME (SL/SR are not used). Motion goes out on the main player's DSU port and slot, and you choose whether it comes from the **left or right** Joy-Con. The joined card has **Test** (its own full-controller window), **Split** and **Disconnect** (both). When they connect, Joy-Cons always start as separate controllers.
+- **Motion (CemuHook/DSU)**: a single server with **one slot per controller**: port `26760`, slot = player number − 1 (players 1–4 on slots 0–3; players 5–8 on port `26761`, slots 0–3). Each controller's card shows its port and slot.
+- **Game rumble** forwarded to the Joy-Con (HD rumble).
+- **Player LED** lit according to the player number.
+- **Battery percentage** for each controller.
+- **Guided calibration**: the motion sensor in 6 positions, with a 3D example of how to hold it, and the stick. Saved per controller (by MAC address).
+- **Test window** with the Joy-Con in 3D moving along with the real controller, the stick, the sensors and the buttons lighting up.
+- **Tray icon** and **settings in the gear menu**: start with Windows (optionally hidden in the tray) and keep running when the window is closed.
+- **Automatic updates**: on startup the app tells you when a new version is out and updates itself, keeping your calibrations.
 - The interface follows your Windows language (English, Português, Español, Français, Deutsch, Italiano, Русский, 日本語, 한국어, 中文).
 
-**Install:** download `JoyCon2Hub_Setup_x.y.z.exe` from **[Releases](../../releases/latest)** and run it (it installs the ViGEmBus driver if needed). The installer is not code-signed, so SmartScreen may warn: *More info → Run anyway*. Requires Windows 10 1809+ / 11 (64-bit) and a Bluetooth 4.0+ (LE) adapter.
+## Requirements
 
-Questions or problems? Open an **[Issue](../../issues)** (attach `%LOCALAPPDATA%\JoyCon2 Hub\joycon2hub_log.txt`).
-
----
-
-## Recursos
-
-- **Até 8 Joy-Con 2 ao mesmo tempo**, cada um como um jogador separado (esquerdo ou direito, identificado sozinho).
-- **Todos os botões**, incluindo **SL/SR**, HOME, Captura e o botão **C** do Joy-Con 2 direito.
-- **Controle virtual por jogador**: Xbox 360 para os jogadores 1 a 4 e DualShock 4 para os jogadores 5 a 8.
-- **Juntar esquerdo + direito num controle completo**: o botão **Juntar** no cartão de um Joy-Con une ele a um do outro lado (com mais de um disponível, você escolhe qual). Os dois viram **um só controle virtual**, segurados na vertical como um controle comum: dois analógicos, direcional, ABXY, L/R, ZL/ZR, −/+ e HOME (SL/SR não são usados). O movimento vai pela porta e slot DSU do jogador principal, e você escolhe se vem do Joy-Con **esquerdo ou direito**. O cartão unido tem **Testar** (tela própria do controle completo), **Separar** e **Desconectar** (os dois). Ao conectar, os Joy-Con continuam separados como sempre.
-- **Movimento (CemuHook/DSU)**: um servidor só, com um **slot por controle**: porta `26760`, slot = número do jogador − 1 (jogadores 1 a 4 nos slots 0 a 3; jogadores 5 a 8 na porta `26761`, slots 0 a 3). O cartão de cada controle mostra a porta e o slot dele.
-- **Vibração** do jogo repassada ao Joy-Con.
-- **LED de jogador** aceso conforme o número do jogador.
-- **Bateria em porcentagem** de cada controle.
-- **Calibração guiada**: o sensor de movimento em 6 posições, com um exemplo em 3D de como posicionar, e o analógico. Fica salva por controle (pelo endereço MAC).
-- **Janela de teste** com o Joy-Con em 3D se mexendo junto com o controle real, o analógico, os sensores e os botões acendendo.
-- **Ícone na bandeja** e **configurações na engrenagem**: iniciar com o Windows (inclusive oculto, só na bandeja) e manter rodando ao fechar a janela.
-- **Atualização automática**: ao abrir, o programa avisa quando há uma versão nova e se atualiza sozinho, mantendo as calibrações.
-
-## Requisitos
-
-- Windows 10 (1809) ou Windows 11, 64 bits.
-- Bluetooth com suporte a **Bluetooth LE** (Bluetooth 4.0 ou mais novo).
+- Windows 10 (1809) or Windows 11, 64-bit.
+- Bluetooth with **Bluetooth LE** support (Bluetooth 4.0 or newer).
 - Joy-Con 2 (Nintendo Switch 2).
-- O driver **ViGEmBus**, que o instalador já instala se ainda não estiver no computador.
+- The **ViGEmBus** driver, which the installer sets up if it isn't on your PC yet.
 
-## Instalação
+## Installation
 
-1. Baixe o `JoyCon2Hub_Setup_x.y.z.exe` na página de **[Releases](../../releases/latest)**.
-2. Execute o instalador.
-   - O instalador não é assinado digitalmente, então o Windows pode mostrar **"O Windows protegeu o computador"**. Clique em **Mais informações → Executar assim mesmo**.
-3. Se o ViGEmBus ainda não estiver instalado, o instalador dele abre no meio do processo: é só seguir as telas.
-4. No final, marque **Abrir o JoyCon2 Hub agora**.
+1. Download `JoyCon2Hub_Setup_x.y.z.exe` from the **[Releases](../../releases/latest)** page.
+2. Run the installer.
+   - The installer is not code-signed, so Windows may show **"Windows protected your PC"**. Click **More info → Run anyway**.
+3. If ViGEmBus isn't installed yet, its installer opens halfway through: just follow its screens.
+4. At the end, tick the option to **open JoyCon2 Hub now**.
 
-**Atualizar:** basta rodar o instalador de uma versão nova (ou aceitar o aviso de atualização do próprio programa). A atualização é feita por cima e **mantém calibrações, configurações e atalhos**.
+**Updating:** just run the installer of a newer version (or accept the update prompt in the app). It installs over the old one and **keeps calibrations, settings and shortcuts**.
 
-## Como usar
+## How to use
 
-### 1. Conectar os Joy-Con 2
-1. Abra o **JoyCon2 Hub**.
-2. **Segure o botão SYNC** do Joy-Con 2 (o botãozinho no trilho) até as luzes correrem.
-3. O controle aparece na lista como **Jogador 1, 2, …**, identificado como **esquerdo** ou **direito**. O LED do jogador acende no controle.
+### 1. Connect the Joy-Con 2
+1. Open **JoyCon2 Hub**.
+2. **Hold the SYNC button** on the Joy-Con 2 (the small button on the rail) until the lights start running.
+3. The controller shows up in the list as **Player 1, 2, …**, identified as **left** or **right**. The player LED lights up on the controller.
 
-Para conectar outro controle, repita com ele. Cada controle ocupa o primeiro lugar livre.
+To connect another controller, repeat with it. Each controller takes the first free spot.
 
-### 2. Calibração (só na primeira vez de cada controle)
-Na primeira conexão de um controle, a janela **Testar controle** abre e guia a calibração:
+### 2. Calibration (only the first time for each controller)
+The first time a controller connects, the **Test controller** window opens and guides the calibration:
 
-- **Sensor de movimento, em 6 posições:** deitado com os botões para cima, de ponta-cabeça, em pé sobre cada ponta e em pé com o trilho para baixo e para cima. Use uma mesa e deixe o controle **parado** em cada posição; o 3D mostra como posicionar.
-- **Analógico:** solte o analógico e depois empurre para cima e para a direita, como o programa pedir.
+- **Motion sensor, in 6 positions:** lying flat with the buttons up, upside down, standing on each end, and standing with the rail down and up. Use a table and keep the controller **still** in each position; the 3D view shows how to place it.
+- **Stick:** let go of the stick, then push it up and to the right when the app asks.
 
-A calibração fica salva e é usada automaticamente nas próximas vezes. Para refazer, abra **Testar** e use **Calibrar sensor de movimento** ou **Calibrar analógico**.
+The calibration is saved and used automatically from then on. To redo it, open **Test** and use **Calibrate motion sensor** or **Calibrate stick**.
 
-### 3. Configurar no Ryujinx
-Para cada jogador, em **Opções → Configurações → Entrada**:
+### 3. Set up Ryujinx
+For each player, in **Options → Settings → Input**:
 
-1. **Dispositivo de entrada:** escolha o controle Xbox 360 (ou DualShock 4, para os jogadores 5 a 8) daquele jogador.
-2. **Tipo de controle:** Joy-Con esquerdo, Joy-Con direito ou Pro Controller, conforme o jogo.
-3. Em **Movimento**, marque **"Usar movimento compatível com CemuHook"** e preencha:
-   - **Servidor:** `127.0.0.1`
-   - **Porta:** `26760` (jogadores 5 a 8: `26761`).
-   - **Slot:** o slot do controle, que aparece no cartão dele (*DSU 26760, slot N*): jogador 1 = `0`, jogador 2 = `1`, jogador 3 = `2`, jogador 4 = `3`. Jogadores 5 a 8 = slots `0` a `3` da porta `26761`.
+1. **Input device:** pick that player's Xbox 360 controller (or DualShock 4, for players 5–8).
+2. **Controller type:** Left Joy-Con, Right Joy-Con or Pro Controller, depending on the game.
+3. Under **Motion**, tick **"Use CemuHook compatible motion"** and fill in:
+   - **Server:** `127.0.0.1`
+   - **Port:** `26760` (players 5–8: `26761`).
+   - **Slot:** the controller's slot, shown on its card (*DSU 26760, slot N*): player 1 = `0`, player 2 = `1`, player 3 = `2`, player 4 = `3`. Players 5–8 = slots `0`–`3` on port `26761`.
+4. Save.
 
-| Jogador | Porta | Slot |
+| Player | Port | Slot |
 |---|---|---|
 | 1 | 26760 | 0 |
 | 2 | 26760 | 1 |
@@ -100,75 +86,75 @@ Para cada jogador, em **Opções → Configurações → Entrada**:
 | 4 | 26760 | 3 |
 | 5 – 8 | 26761 | 0 – 3 |
 
-> **Vindo da versão 1.3 ou anterior?** Antes era uma porta por controle (26760, 26761, 26762…), sempre no slot 0. Agora o jogador 2 fica em `26760` **slot 1**, o jogador 3 em `26760` **slot 2**, e assim por diante: ajuste a porta e o slot de cada jogador no emulador.
-4. Salve.
+> **Coming from version 1.3 or older?** It used to be one port per controller (26760, 26761, 26762…), always on slot 0. Now player 2 is on `26760` **slot 1**, player 3 on `26760` **slot 2**, and so on: update each player's port and slot in your emulator.
 
-O mesmo servidor DSU funciona no **Cemu**, no **Dolphin** e em outros programas compatíveis com CemuHook.
+The same DSU server works in **Cemu**, **Dolphin** and other CemuHook-compatible programs.
 
-### 3b. Configurar no Lichii (emulador de Switch 2) — e no Eden / Eden-NX2
-O Lichii conecta sozinho só o **Pro Controller** do Switch 2. Os **Joy-Con 2** entram pelo JoyCon2 Hub. Baixe o Lichii somente pela página oficial de releases no GitHub ([zortos293/Lichii](https://github.com/zortos293/Lichii/releases)).
+### 3b. Set up Lichii (Switch 2 emulator) — and Eden / Eden-NX2
+Lichii only connects the Switch 2 **Pro Controller** by itself. The **Joy-Con 2** come in through JoyCon2 Hub. Only download Lichii from its official GitHub releases page ([zortos293/Lichii](https://github.com/zortos293/Lichii/releases)).
 
-1. Abra **Emulation → Configure… → Controls**.
-2. **Servidores de movimento:** em **Motion**, clique em **Configure** (janela *Configure Motion / Touch*). Em **CemuhookUDP Config**, o servidor `127.0.0.1` porta `26760` já vem cadastrado e atende os jogadores 1 a 4 (um slot para cada). Só para os jogadores 5 a 8 use **Add Server** com `127.0.0.1` porta `26761`. O botão **Test** confere a ligação.
-3. Em cada **Player N**:
-   - **Input Device:** o controle Xbox 360 (ou DualShock 4) daquele jogador;
-   - **Controller type:** Pro Controller, Left Joycon, Right Joycon ou Dual Joycons (para o par unido com **Juntar**), conforme o jogo;
-   - **Movimento:** com o tipo **Right Joycon** o campo é **Motion 2**. Com Left Joycon ou Pro Controller é **Motion 1**. Com Dual Joycons, preencha os dois. Clique no campo, **solte o mouse** e **chacoalhe forte** o Joy-Con daquele jogador. O campo deixa de mostrar *[not set]*.
-     - Se aparecer **Mouse**, o Lichii gravou o mouse, que se mexeu antes do Joy-Con. Clique com o botão direito no campo, escolha **Clear** e tente de novo sem encostar no mouse.
-4. Clique em **OK**.
+1. Open **Emulation → Configure… → Controls**.
+2. **Motion servers:** under **Motion**, click **Configure** (the *Configure Motion / Touch* window). In **CemuhookUDP Config**, the server `127.0.0.1` port `26760` is already there and serves players 1–4 (one slot each). Only for players 5–8, use **Add Server** with `127.0.0.1` port `26761`. The **Test** button checks the connection.
+3. In each **Player N**:
+   - **Input Device:** that player's Xbox 360 (or DualShock 4) controller;
+   - **Controller type:** Pro Controller, Left Joycon, Right Joycon or Dual Joycons (for a pair joined with **Join**), depending on the game;
+   - **Motion:** with **Right Joycon** the field is **Motion 2**. With Left Joycon or Pro Controller it's **Motion 1**. With Dual Joycons, fill in both. Click the field, **let go of the mouse** and **shake** that player's Joy-Con hard. The field stops showing *[not set]*.
+     - If it shows **Mouse**, Lichii recorded the mouse, which moved before the Joy-Con. Right-click the field, choose **Clear** and try again without touching the mouse.
+4. Click **OK**.
 
-**Se mesmo assim não gravar:** feche o Lichii e edite `%APPDATA%\lichii\config\qt-config.ini`. Troque as linhas `player_0_motionleft=` e `player_0_motionright=` por (jogador 1, porta 26760):
+**If it still won't record:** close Lichii and edit `%APPDATA%\lichii\config\qt-config.ini`. Replace the `player_0_motionleft=` and `player_0_motionright=` lines with (player 1, port 26760):
 ```
 player_0_motionleft="engine:cemuhookudp,motion:0,port:26760,pad:0,guid:0000000000000000000000007f000001"
 player_0_motionright="engine:cemuhookudp,motion:0,port:26760,pad:0,guid:0000000000000000000000007f000001"
 ```
-Para o jogador 2, use `player_1_…` com `port:26760` e `pad:1`. Para o jogador 3, `player_2_…` com `pad:2`; jogador 4, `player_3_…` com `pad:3` (o `pad` é o slot). Jogadores 5 a 8 usam `port:26761` com `pad:4` a `pad:7` (segundo servidor cadastrado, slots 0 a 3).
+For player 2, use `player_1_…` with `port:26760` and `pad:1`. For player 3, `player_2_…` with `pad:2`; player 4, `player_3_…` with `pad:3` (`pad` is the slot). Players 5–8 use `port:26761` with `pad:4` to `pad:7` (second server in the list, slots 0–3).
 
-O Eden e o Eden-NX2 têm as mesmas telas (todos vêm do yuzu).
+Eden and Eden-NX2 have the same screens (they all come from yuzu).
 
-### 4. Janela "Testar controle"
-Clique em **Testar** no cartão de um controle para ver:
-- o Joy-Con em **3D** acompanhando a posição real;
-- o **analógico**, com o valor enviado ao jogo e o valor cru;
-- a **aceleração** e o **giro estimado**;
-- os **botões** acendendo, inclusive SL/SR.
+### 4. "Test controller" window
+Click **Test** on a controller's card to see:
+- the Joy-Con in **3D** following its real position;
+- the **stick**, with the value sent to the game and the raw value;
+- the **acceleration** and the **gyro**;
+- the **buttons** lighting up, including SL/SR.
 
-Botões da janela:
-- **Calibrar sensor de movimento** e **Calibrar analógico**.
-- **Girar 90°** e **Inverter**: ajustes finos se o movimento no jogo estiver virado ou espelhado.
+Window buttons:
+- **Calibrate motion sensor** and **Calibrate stick**.
+- **Rotate 90°** and **Invert**: fine-tuning if motion in the game is rotated or mirrored.
 
-## Sobre o movimento
+## About motion
 
-O JoyCon2 Hub envia ao emulador o **acelerômetro** e o **giroscópio real** do Joy-Con 2, nos três eixos:
-- O giro vem da orientação que o próprio controle calcula com o giroscópio dele. Por isso funciona também girar o controle deitado sobre a mesa, como um volante plano.
-- O giroscópio tem um pequeno desvio que muda de controle para controle. Ao conectar, deixe o controle **parado por 1 segundo** para o programa medir e descontar esse desvio. Enquanto isso, a janela de teste mostra *"Medindo o giro"*.
-- Até o desvio ser medido, o giro é estimado pela inclinação (gravidade), como nas versões antigas.
+JoyCon2 Hub sends the Joy-Con 2's **accelerometer** and **real gyroscope** to the emulator, on all three axes:
+- The gyro comes from the orientation the controller computes with its own gyroscope. That's why turning the controller flat on a table, like a flat steering wheel, also works.
+- The gyroscope has a small drift that varies from controller to controller. When it connects, keep the controller **still for 1 second** so the app can measure and remove it. Meanwhile the test window shows that it's measuring the gyro.
+- Until the drift is measured, the gyro is estimated from the tilt (gravity), as in older versions.
 
-## Onde ficam os arquivos
+## Where the files are
 
-| O quê | Onde |
+| What | Where |
 |---|---|
-| Programa | `C:\Program Files\JoyCon2 Hub\` |
-| Calibrações (uma por controle) | `%LOCALAPPDATA%\JoyCon2 Hub\Calibracoes\` |
+| Program | `C:\Program Files\JoyCon2 Hub\` |
+| Calibrations (one per controller) | `%LOCALAPPDATA%\JoyCon2 Hub\Calibracoes\` |
 | Log | `%LOCALAPPDATA%\JoyCon2 Hub\joycon2hub_log.txt` |
 
-No Menu Iniciar, o atalho **Pasta de calibrações** abre essa pasta. Para recalibrar um controle do zero, apague o arquivo dele.
+In the Start menu, the calibration folder shortcut opens that folder. To recalibrate a controller from scratch, delete its file.
 
-## Problemas comuns
+## Troubleshooting
 
-- **O controle não aparece:** segure o SYNC até as luzes correrem. Confira também se o Bluetooth do PC está ligado. Não é preciso parear pelas configurações do Windows.
-- **Não aparece controle Xbox no Ryujinx:** o ViGEmBus não está instalado. Reinstale o JoyCon2 Hub, que oferece instalar o driver.
-- **Movimento virado ou espelhado no jogo:** use **Girar 90°** e **Inverter** na janela de teste.
-- **Movimento torto:** refaça a calibração do sensor, com o controle bem parado em cada posição.
-- Se o problema continuar, abra uma **[Issue](../../issues)** e anexe o `joycon2hub_log.txt`.
+- **The controller doesn't show up:** hold SYNC until the lights run. Also check that the PC's Bluetooth is on. You don't need to pair it in Windows settings.
+- **No Xbox controller in Ryujinx:** ViGEmBus isn't installed. Reinstall JoyCon2 Hub, which offers to install the driver.
+- **Motion rotated or mirrored in the game:** use **Rotate 90°** and **Invert** in the test window.
+- **Motion is off:** redo the sensor calibration, keeping the controller completely still in each position.
+- **A single Joy-Con's buttons are wrong in Ryujinx (e.g. the d-pad acts as ABXY):** check that player's CemuHook **port and slot** in Ryujinx. The app reads them to know whether Ryujinx expects a Left/Right Joy-Con.
+- If the problem persists, open an **[Issue](../../issues)** and attach `joycon2hub_log.txt`.
 
-## Créditos e licenças
+## Credits and licenses
 
-- Modelo 3D do Joy-Con 2 direito: **"Nintendo Switch Joy-Con 2 R"**, por *joshuagoldenburgh* (Sketchfab), [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Adaptado: cores e peças que acendem.
-- Modelo 3D do Joy-Con 2 esquerdo: **"Nintendo Switch 2"**, por *Nicolas Pinilla* (Sketchfab), [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Adaptado: só o Joy-Con esquerdo, reorientado.
-- **ViGEmBus** e **ViGEmClient**, por Nefarius Software Solutions / Benjamin Höglinger-Stelzer (licenças BSD-3 e MIT).
-- Instalador feito com **Inno Setup**.
+- Right Joy-Con 2 3D model: **"Nintendo Switch Joy-Con 2 R"** by *joshuagoldenburgh* (Sketchfab), [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Adapted: colors and parts that light up.
+- Left Joy-Con 2 3D model: **"Nintendo Switch 2"** by *Nicolas Pinilla* (Sketchfab), [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/). Adapted: left Joy-Con only, reoriented.
+- **ViGEmBus** and **ViGEmClient** by Nefarius Software Solutions / Benjamin Höglinger-Stelzer (BSD-3 and MIT licenses).
+- Installer built with **Inno Setup**.
 
-O código-fonte do JoyCon2 Hub não é publicado neste repositório: aqui ficam a documentação e os instaladores (Releases).
+JoyCon2 Hub's source code is not published in this repository: it holds the documentation and the installers (Releases).
 
-*Nintendo Switch, Nintendo Switch 2 e Joy-Con são marcas da Nintendo. Este projeto não é afiliado nem endossado pela Nintendo.*
+*Nintendo Switch, Nintendo Switch 2 and Joy-Con are trademarks of Nintendo. This project is not affiliated with or endorsed by Nintendo.*
