@@ -23,7 +23,7 @@ O JoyCon2 Hub conecta até **8 Joy-Con 2** por Bluetooth, ativa todos os recurso
 - Each one becomes a **virtual Xbox 360** (players 1–4) or **DualShock 4** (players 5–8) controller.
 - **Join** a left + right pair into one full controller.
 - **Motion via CemuHook/DSU** for Ryujinx, Cemu, Dolphin: one port per player (`127.0.0.1`, port 26760 + player − 1, slot 0).
-- **Switch 2 emulators (Lichii, Eden-NX2):** Lichii only connects the Switch 2 *Pro Controller* by itself. JoyCon2 Hub adds the **Joy-Con 2**. In *Emulation → Configure… → Controls*, pick the virtual Xbox controller as the input device. Then go to *Motion → Configure → CemuhookUDP Config*: `127.0.0.1:26760` is there by default; add 26761, 26762… for more players. Finally click *Motion 1* and move the Joy-Con.
+- **Switch 2 emulators (Lichii, Eden-NX2):** Lichii only connects the Switch 2 *Pro Controller* by itself. JoyCon2 Hub adds the **Joy-Con 2**. In *Emulation → Configure… → Controls*, pick the virtual Xbox controller as the input device. Then go to *Motion → Configure → CemuhookUDP Config*: `127.0.0.1:26760` is there by default; add 26761, 26762… for more players. Finally click the motion field (*Motion 2* for Right Joycon, *Motion 1* for Left/Pro) and shake the Joy-Con without touching the mouse. If it says "Mouse", right-click → Clear and retry.
 - Guided calibration, live 3D test window, battery %, player LEDs, tray icon, auto-update.
 - The interface follows your Windows language (English, Português, Español, Français, Deutsch, Italiano, Русский, 日本語, 한국어, 中文).
 
@@ -103,8 +103,16 @@ O Lichii conecta sozinho só o **Pro Controller** do Switch 2. Os **Joy-Con 2** 
 3. Em cada **Player N**:
    - **Input Device:** o controle Xbox 360 (ou DualShock 4) daquele jogador;
    - **Controller type:** Pro Controller, Left Joycon, Right Joycon ou Dual Joycons (para o par unido com **Juntar**), conforme o jogo;
-   - **Motion 1:** clique e **mexa o Joy-Con** daquele jogador. O emulador grava o movimento vindo do CemuHook.
+   - **Movimento:** com o tipo **Right Joycon** o campo é **Motion 2**. Com Left Joycon ou Pro Controller é **Motion 1**. Com Dual Joycons, preencha os dois. Clique no campo, **solte o mouse** e **chacoalhe forte** o Joy-Con daquele jogador. O campo deixa de mostrar *[not set]*.
+     - Se aparecer **Mouse**, o Lichii gravou o mouse, que se mexeu antes do Joy-Con. Clique com o botão direito no campo, escolha **Clear** e tente de novo sem encostar no mouse.
 4. Clique em **OK**.
+
+**Se mesmo assim não gravar:** feche o Lichii e edite `%APPDATA%\lichii\config\qt-config.ini`. Troque as linhas `player_0_motionleft=` e `player_0_motionright=` por (jogador 1, porta 26760):
+```
+player_0_motionleft="engine:cemuhookudp,motion:0,port:26760,pad:0,guid:0000000000000000000000007f000001"
+player_0_motionright="engine:cemuhookudp,motion:0,port:26760,pad:0,guid:0000000000000000000000007f000001"
+```
+Para o jogador 2, use `player_1_…` com `port:26761` e `pad:4`. Para o jogador 3, `player_2_…` com `port:26762` e `pad:8`, e assim por diante. Os servidores precisam estar cadastrados na mesma ordem: 26760, 26761, 26762…
 
 O Eden e o Eden-NX2 têm as mesmas telas (todos vêm do yuzu).
 
