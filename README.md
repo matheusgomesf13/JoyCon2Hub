@@ -6,6 +6,30 @@ O JoyCon2 Hub conecta até **8 Joy-Con 2** por Bluetooth, ativa todos os recurso
 
 > ⬇️ **[Baixar a última versão](../../releases/latest)** — arquivo `JoyCon2Hub_Setup_x.y.z.exe`
 
+<p align="center">
+  <img src="docs/main.png" alt="JoyCon2 Hub - controles conectados" width="420">
+  &nbsp;
+  <img src="docs/joined.png" alt="Esquerdo + direito unidos num controle completo" width="420">
+</p>
+<p align="center">
+  <img src="docs/test.gif" alt="Janela de teste com o Joy-Con 2 em 3D, analógico, sensores e botões" width="860">
+</p>
+
+### English
+
+**Use Joy-Con 2 (Nintendo Switch 2) controllers on Windows and in Ryujinx — every button including SL/SR, sticks, HD rumble and motion (real gyro).**
+
+- Up to **8 Joy-Con 2** over Bluetooth LE, no Windows pairing needed (just hold SYNC).
+- Each one becomes a **virtual Xbox 360** (players 1–4) or **DualShock 4** (players 5–8) controller.
+- **Join** a left + right pair into one full controller.
+- **Motion via CemuHook/DSU** for Ryujinx, Cemu, Dolphin: one port per player (`127.0.0.1`, port 26760 + player − 1, slot 0).
+- Guided calibration, live 3D test window, battery %, player LEDs, tray icon, auto-update.
+- The interface follows your Windows language (English, Português, Español, Français, Deutsch, Italiano, Русский, 日本語, 한국어, 中文).
+
+**Install:** download `JoyCon2Hub_Setup_x.y.z.exe` from **[Releases](../../releases/latest)** and run it (it installs the ViGEmBus driver if needed). The installer is not code-signed, so SmartScreen may warn: *More info → Run anyway*. Requires Windows 10 1809+ / 11 (64-bit) and a Bluetooth 4.0+ (LE) adapter.
+
+Questions or problems? Open an **[Issue](../../issues)** (attach `%LOCALAPPDATA%\JoyCon2 Hub\joycon2hub_log.txt`).
+
 ---
 
 ## Recursos
@@ -83,11 +107,10 @@ Botões da janela:
 
 ## Sobre o movimento
 
-No modo usado no PC, o Joy-Con 2 envia o **acelerômetro**, mas **não envia giroscópio**. Por isso, o JoyCon2 Hub calcula o movimento assim:
-- **Inclinação** (frente/trás e lados): medida com precisão pela gravidade.
-- **Giro**: estimado a partir da mudança da inclinação.
-- **Girar em círculo** (laço, volante) e **puxões rápidos**: detectados à parte e enviados como rotação (experimental).
-- **Limitação:** girar o controle deitado sobre a mesa, como um volante plano, não é detectado.
+O JoyCon2 Hub envia ao emulador o **acelerômetro** e o **giroscópio real** do Joy-Con 2, nos três eixos:
+- O giro vem da orientação que o próprio controle calcula com o giroscópio dele. Por isso funciona também girar o controle deitado sobre a mesa, como um volante plano.
+- O giroscópio tem um pequeno desvio que muda de controle para controle. Ao conectar, deixe o controle **parado por 1 segundo** para o programa medir e descontar esse desvio. Enquanto isso, a janela de teste mostra *"Medindo o giro"*.
+- Até o desvio ser medido, o giro é estimado pela inclinação (gravidade), como nas versões antigas.
 
 ## Onde ficam os arquivos
 
