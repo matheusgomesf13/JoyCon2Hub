@@ -1,6 +1,6 @@
 # JoyCon2 Hub — Use Joy-Con 2 on PC (Windows)
 
-🇺🇸 **English** · 🇧🇷 [Português](README.pt-BR.md)
+🇺🇸 **English** · 🇧🇷 [Português](README.pt-BR.md) · ☕ [Support the project](#-support-the-project)
 
 **Use your Nintendo Switch 2 Joy-Con 2 controllers on a Windows PC and in Ryujinx — every button including SL/SR, sticks, HD rumble and motion (real gyro).**
 
@@ -147,6 +147,25 @@ In the Start menu, the calibration folder shortcut opens that folder. To recalib
 - **Motion is off:** redo the sensor calibration, keeping the controller completely still in each position.
 - **A single Joy-Con's buttons are wrong in Ryujinx (e.g. the d-pad acts as ABXY):** check that player's CemuHook **port and slot** in Ryujinx. The app reads them to know whether Ryujinx expects a Left/Right Joy-Con.
 - If the problem persists, open an **[Issue](../../issues)** and attach `joycon2hub_log.txt`.
+
+## ☕ Support the project
+
+JoyCon2 Hub is free. If it's useful to you, you can support its development with a crypto donation from any wallet or exchange:
+
+<p>
+  <img src="docs/donate-usdt-bep20.png" alt="QR code - USDT on BNB Smart Chain (BEP20)" width="200" align="right">
+</p>
+
+**USDT — BNB Smart Chain (BEP20)**
+```
+0x1267f05b70d729e258e2C1c3f02e7F2Be8127190
+```
+
+> ⚠️ Send **only USDT on the BNB Smart Chain (BEP20)** network to this address. Other coins or networks may be lost.
+
+Thank you! Sharing the project, starring the repo ⭐ and reporting bugs also helps a lot.
+
+<br clear="right">
 
 ## Credits and licenses
 

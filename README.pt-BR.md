@@ -1,6 +1,6 @@
 # JoyCon2 Hub
 
-🇺🇸 [English](README.md) · 🇧🇷 **Português**
+🇺🇸 [English](README.md) · 🇧🇷 **Português** · ☕ [Apoie o projeto](#-apoie-o-projeto)
 
 **Use os Joy-Con 2 (Nintendo Switch 2) no PC e no Ryujinx — botões, analógico, SL/SR, vibração e movimento.**
 
@@ -145,6 +145,25 @@ No Menu Iniciar, o atalho **Pasta de calibrações** abre essa pasta. Para recal
 - **Movimento virado ou espelhado no jogo:** use **Girar 90°** e **Inverter** na janela de teste.
 - **Movimento torto:** refaça a calibração do sensor, com o controle bem parado em cada posição.
 - Se o problema continuar, abra uma **[Issue](../../issues)** e anexe o `joycon2hub_log.txt`.
+
+## ☕ Apoie o projeto
+
+O JoyCon2 Hub é gratuito. Se ele te ajudou, você pode apoiar o desenvolvimento com uma doação em cripto, de qualquer carteira ou corretora:
+
+<p>
+  <img src="docs/donate-usdt-bep20.png" alt="QR code - USDT na BNB Smart Chain (BEP20)" width="200" align="right">
+</p>
+
+**USDT — BNB Smart Chain (BEP20)**
+```
+0x1267f05b70d729e258e2C1c3f02e7F2Be8127190
+```
+
+> ⚠️ Envie **somente USDT pela rede BNB Smart Chain (BEP20)** para este endereço. Outras moedas ou redes podem ser perdidas.
+
+Obrigado! Divulgar o projeto, dar uma estrela ⭐ no repositório e relatar problemas também ajuda muito.
+
+<br clear="right">
 
 ## Créditos e licenças
 
