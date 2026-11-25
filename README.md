@@ -22,8 +22,8 @@ O JoyCon2 Hub conecta até **8 Joy-Con 2** por Bluetooth, ativa todos os recurso
 - Up to **8 Joy-Con 2** over Bluetooth LE, no Windows pairing needed (just hold SYNC).
 - Each one becomes a **virtual Xbox 360** (players 1–4) or **DualShock 4** (players 5–8) controller.
 - **Join** a left + right pair into one full controller.
-- **Motion via CemuHook/DSU** for Ryujinx, Cemu, Dolphin: one port per player (`127.0.0.1`, port 26760 + player − 1, slot 0).
-- **Switch 2 emulators (Lichii, Eden-NX2):** Lichii only connects the Switch 2 *Pro Controller* by itself. JoyCon2 Hub adds the **Joy-Con 2**. In *Emulation → Configure… → Controls*, pick the virtual Xbox controller as the input device. Then go to *Motion → Configure → CemuhookUDP Config*: `127.0.0.1:26760` is there by default; add 26761, 26762… for more players. Finally click the motion field (*Motion 2* for Right Joycon, *Motion 1* for Left/Pro) and shake the Joy-Con without touching the mouse. If it says "Mouse", right-click → Clear and retry.
+- **Motion via CemuHook/DSU** for Ryujinx, Cemu, Dolphin: one server, one slot per player — `127.0.0.1:26760`, slot = player − 1 (players 1–4 → slots 0–3; players 5–8 → port `26761`, slots 0–3). The card of each controller shows its port and slot.
+- **Switch 2 emulators (Lichii, Eden-NX2):** Lichii only connects the Switch 2 *Pro Controller* by itself. JoyCon2 Hub adds the **Joy-Con 2**. In *Emulation → Configure… → Controls*, pick the virtual Xbox controller as the input device. Then go to *Motion → Configure → CemuhookUDP Config*: `127.0.0.1:26760` is there by default and serves players 1–4 (add `26761` only for players 5–8). Finally click the motion field (*Motion 2* for Right Joycon, *Motion 1* for Left/Pro) and shake the Joy-Con without touching the mouse. If it says "Mouse", right-click → Clear and retry.
 - Guided calibration, live 3D test window, battery %, player LEDs, tray icon, auto-update.
 - The interface follows your Windows language (English, Português, Español, Français, Deutsch, Italiano, Русский, 日本語, 한국어, 中文).
 
@@ -38,8 +38,8 @@ Questions or problems? Open an **[Issue](../../issues)** (attach `%LOCALAPPDATA%
 - **Até 8 Joy-Con 2 ao mesmo tempo**, cada um como um jogador separado (esquerdo ou direito, identificado sozinho).
 - **Todos os botões**, incluindo **SL/SR**, HOME, Captura e o botão **C** do Joy-Con 2 direito.
 - **Controle virtual por jogador**: Xbox 360 para os jogadores 1 a 4 e DualShock 4 para os jogadores 5 a 8.
-- **Juntar esquerdo + direito num controle completo**: o botão **Juntar** no cartão de um Joy-Con une ele a um do outro lado (com mais de um disponível, você escolhe qual). Os dois viram **um só controle virtual**, segurados na vertical como um controle comum: dois analógicos, direcional, ABXY, L/R, ZL/ZR, −/+ e HOME (SL/SR não são usados). O movimento vai pela porta DSU do jogador principal, e você escolhe se vem do Joy-Con **esquerdo ou direito**. O cartão unido tem **Testar** (tela própria do controle completo), **Separar** e **Desconectar** (os dois). Ao conectar, os Joy-Con continuam separados como sempre.
-- **Movimento (CemuHook/DSU)**: uma porta por controle (26760, 26761, …), sempre no slot 0.
+- **Juntar esquerdo + direito num controle completo**: o botão **Juntar** no cartão de um Joy-Con une ele a um do outro lado (com mais de um disponível, você escolhe qual). Os dois viram **um só controle virtual**, segurados na vertical como um controle comum: dois analógicos, direcional, ABXY, L/R, ZL/ZR, −/+ e HOME (SL/SR não são usados). O movimento vai pela porta e slot DSU do jogador principal, e você escolhe se vem do Joy-Con **esquerdo ou direito**. O cartão unido tem **Testar** (tela própria do controle completo), **Separar** e **Desconectar** (os dois). Ao conectar, os Joy-Con continuam separados como sempre.
+- **Movimento (CemuHook/DSU)**: um servidor só, com um **slot por controle**: porta `26760`, slot = número do jogador − 1 (jogadores 1 a 4 nos slots 0 a 3; jogadores 5 a 8 na porta `26761`, slots 0 a 3). O cartão de cada controle mostra a porta e o slot dele.
 - **Vibração** do jogo repassada ao Joy-Con.
 - **LED de jogador** aceso conforme o número do jogador.
 - **Bateria em porcentagem** de cada controle.
@@ -89,8 +89,18 @@ Para cada jogador, em **Opções → Configurações → Entrada**:
 2. **Tipo de controle:** Joy-Con esquerdo, Joy-Con direito ou Pro Controller, conforme o jogo.
 3. Em **Movimento**, marque **"Usar movimento compatível com CemuHook"** e preencha:
    - **Servidor:** `127.0.0.1`
-   - **Porta:** a porta DSU do controle, que aparece no cartão dele: jogador 1 = `26760`, jogador 2 = `26761`, e assim por diante.
-   - **Slot:** `0`
+   - **Porta:** `26760` (jogadores 5 a 8: `26761`).
+   - **Slot:** o slot do controle, que aparece no cartão dele (*DSU 26760, slot N*): jogador 1 = `0`, jogador 2 = `1`, jogador 3 = `2`, jogador 4 = `3`. Jogadores 5 a 8 = slots `0` a `3` da porta `26761`.
+
+| Jogador | Porta | Slot |
+|---|---|---|
+| 1 | 26760 | 0 |
+| 2 | 26760 | 1 |
+| 3 | 26760 | 2 |
+| 4 | 26760 | 3 |
+| 5 – 8 | 26761 | 0 – 3 |
+
+> **Vindo da versão 1.3 ou anterior?** Antes era uma porta por controle (26760, 26761, 26762…), sempre no slot 0. Agora o jogador 2 fica em `26760` **slot 1**, o jogador 3 em `26760` **slot 2**, e assim por diante: ajuste a porta e o slot de cada jogador no emulador.
 4. Salve.
 
 O mesmo servidor DSU funciona no **Cemu**, no **Dolphin** e em outros programas compatíveis com CemuHook.
@@ -99,7 +109,7 @@ O mesmo servidor DSU funciona no **Cemu**, no **Dolphin** e em outros programas 
 O Lichii conecta sozinho só o **Pro Controller** do Switch 2. Os **Joy-Con 2** entram pelo JoyCon2 Hub. Baixe o Lichii somente pela página oficial de releases no GitHub ([zortos293/Lichii](https://github.com/zortos293/Lichii/releases)).
 
 1. Abra **Emulation → Configure… → Controls**.
-2. **Servidores de movimento:** em **Motion**, clique em **Configure** (janela *Configure Motion / Touch*). Em **CemuhookUDP Config**, o servidor `127.0.0.1` porta `26760` (jogador 1) já vem cadastrado. Para outros jogadores, use **Add Server** com `127.0.0.1` e a porta de cada um (`26761`, `26762`, …). O botão **Test** confere a ligação.
+2. **Servidores de movimento:** em **Motion**, clique em **Configure** (janela *Configure Motion / Touch*). Em **CemuhookUDP Config**, o servidor `127.0.0.1` porta `26760` já vem cadastrado e atende os jogadores 1 a 4 (um slot para cada). Só para os jogadores 5 a 8 use **Add Server** com `127.0.0.1` porta `26761`. O botão **Test** confere a ligação.
 3. Em cada **Player N**:
    - **Input Device:** o controle Xbox 360 (ou DualShock 4) daquele jogador;
    - **Controller type:** Pro Controller, Left Joycon, Right Joycon ou Dual Joycons (para o par unido com **Juntar**), conforme o jogo;
@@ -112,7 +122,7 @@ O Lichii conecta sozinho só o **Pro Controller** do Switch 2. Os **Joy-Con 2** 
 player_0_motionleft="engine:cemuhookudp,motion:0,port:26760,pad:0,guid:0000000000000000000000007f000001"
 player_0_motionright="engine:cemuhookudp,motion:0,port:26760,pad:0,guid:0000000000000000000000007f000001"
 ```
-Para o jogador 2, use `player_1_…` com `port:26761` e `pad:4`. Para o jogador 3, `player_2_…` com `port:26762` e `pad:8`, e assim por diante. Os servidores precisam estar cadastrados na mesma ordem: 26760, 26761, 26762…
+Para o jogador 2, use `player_1_…` com `port:26760` e `pad:1`. Para o jogador 3, `player_2_…` com `pad:2`; jogador 4, `player_3_…` com `pad:3` (o `pad` é o slot). Jogadores 5 a 8 usam `port:26761` com `pad:4` a `pad:7` (segundo servidor cadastrado, slots 0 a 3).
 
 O Eden e o Eden-NX2 têm as mesmas telas (todos vêm do yuzu).
 
